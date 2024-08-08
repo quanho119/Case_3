@@ -36,14 +36,14 @@ public class RoomController extends HttpServlet {
         String url = req.getPathInfo();
         try {
             if (url == null || url.equals("/")) {
-                this.renderHotelList(req, resp);
+                this.renderRoomList(req, resp);
             }
             switch (Objects.requireNonNull(url)) {
                 case "/create":
-                    this.renderHotelCreate(req, resp);
+                    this.renderRoomCreate(req, resp);
                     break;
                 case "/update":
-                    this.renderHotelUpdate(req, resp);
+                    this.renderRoomUpdate(req, resp);
                     break;
                 case "/delete":
                     this.deleteRoom(req, resp);
@@ -106,7 +106,7 @@ public class RoomController extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
-    private void renderHotelUpdate(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
+    private void renderRoomUpdate(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
         Room room = this.roomService.getRoomById(req, resp);
         List<Type> types = this.typeService.getAllTypes();
         List<Status> statuses = this.statusService.getAllStatuses();
@@ -122,7 +122,7 @@ public class RoomController extends HttpServlet {
         resp.sendRedirect("/rooms/");
     }
 
-    private void renderHotelList(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
+    private void renderRoomList(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
         List<Room> rooms = this.roomService.getAllRooms(req);
         int floor = roomService.getCountFloor();
         req.setAttribute("rooms", rooms);
@@ -131,7 +131,7 @@ public class RoomController extends HttpServlet {
         requestDispatcher.forward(req, resp);
     }
 
-    private void renderHotelCreate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
+    private void renderRoomCreate(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, SQLException {
         List<Type> types = this.typeService.getAllTypes();
         req.setAttribute("types", types);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/rooms/create.jsp");
