@@ -73,7 +73,6 @@ public class RoomService {
     public List<Room> getRoomByRoomNumber(HttpServletRequest req) throws SQLException {
         List<Room> rooms = new ArrayList<>();
         String keyword = req.getParameter("keyword");
-        System.out.println("Keyword: " + keyword);
         if (keyword == null || keyword.isEmpty()) {
             return rooms;
         }
