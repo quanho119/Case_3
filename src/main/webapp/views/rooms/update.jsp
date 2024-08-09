@@ -17,6 +17,9 @@
 </head>
 <body>
 <div class="container mt-5">
+    <a href="${pageContext.request.contextPath}/rooms" class="text-decoration-none">
+        <h1 class="mb-4 text-primary">Hotel Rooms List</h1>
+    </a>
     <h2>Update Room</h2>
     <form action="/rooms/update" method="post">
         <input type="hidden" name="id" id="id" value="${room.id}">

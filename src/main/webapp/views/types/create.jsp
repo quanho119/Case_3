@@ -9,6 +9,9 @@
 </head>
 <body>
 <div class="container mt-5">
+    <a href="${pageContext.request.contextPath}/rooms" class="text-decoration-none">
+        <h1 class="mb-4 text-primary">Hotel Rooms List</h1>
+    </a>
     <h2>Create Room Type</h2>
     <form action="/types/create" method="post">
         <div class="form-group">

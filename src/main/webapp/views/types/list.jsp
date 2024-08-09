@@ -13,7 +13,10 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="mb-4">Types List</h1>
+    <a href="${pageContext.request.contextPath}/rooms" class="text-decoration-none">
+        <h1 class="mb-4 text-primary">Hotel Rooms List</h1>
+    </a>
+    <h2>Types List</h2>
 
     <div class="mb-3">
         <a href="${pageContext.request.contextPath}/types/create" class="btn btn-primary">Create a new type</a>

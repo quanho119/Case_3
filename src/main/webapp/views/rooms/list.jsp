@@ -17,8 +17,9 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="mb-4">Hotel Rooms List</h1>
-
+    <a href="${pageContext.request.contextPath}/rooms" class="text-decoration-none">
+        <h1 class="mb-4 text-primary">Hotel Rooms List</h1>
+    </a>
     <div class="mb-3">
         <a href="${pageContext.request.contextPath}/rooms/create" class="btn btn-primary">Create a new room</a>
         <a href="${pageContext.request.contextPath}/types" class="btn btn-info">Room Types List</a>
