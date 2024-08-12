@@ -31,7 +31,7 @@
             <input type="text" name="keyword" id="search" class="form-control" placeholder="Search...">
         </div>
         <button type="submit" class="btn btn-secondary">Search</button>
-        <a href="${pageContext.request.contextPath}/rooms" class="btn btn-link">Reset</a>
+        <input type="reset" value="Reset" class="btn btn-secondary ml-2">
     </form>
 
     <nav aria-label="Page navigation">
@@ -71,7 +71,14 @@
                 <td><c:out value="${index}" /></td>
                 <td><c:out value="${room.room_number}" /></td>
                 <td><c:out value="${room.floor_number}" /></td>
-                <td><c:out value="${room.room_type}" /></td>
+                <c:choose>
+                    <c:when test="${room.room_type eq null}">
+                        <td>Undefined</td>
+                    </c:when>
+                    <c:otherwise>
+                        <td><c:out value="${room.room_type}" /></td>
+                    </c:otherwise>
+                </c:choose>
                 <td><c:out value="${room.price}" /></td>
                 <td><c:out value="${room.room_status}" /></td>
                 <c:choose>

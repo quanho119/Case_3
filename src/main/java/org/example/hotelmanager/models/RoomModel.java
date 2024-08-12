@@ -16,7 +16,7 @@ public class RoomModel {
     }
 
     public ResultSet getRooms() throws SQLException {
-        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id ORDER BY rooms.room_number";
+        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms LEFT JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id ORDER BY rooms.room_number";
         PreparedStatement ps = this.conn.prepareStatement(sql);
         return ps.executeQuery();
     }
@@ -41,14 +41,14 @@ public class RoomModel {
     }
 
     public ResultSet search(String keyword) throws SQLException {
-        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id WHERE room_number LIKE ?";
+        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms LEFT JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id WHERE room_number LIKE ?";
         PreparedStatement ps = this.conn.prepareStatement(sql);
         ps.setString(1, "%" + keyword + "%");
         return ps.executeQuery();
     }
 
     public ResultSet getRoomById(int id) throws SQLException {
-        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id WHERE rooms.id = ?";
+        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms LEFT JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id WHERE rooms.id = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
@@ -83,7 +83,7 @@ public class RoomModel {
     }
 
     public ResultSet getRoomByFloor(int floorInt) throws SQLException {
-        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id  where floor_number = ? ORDER BY rooms.room_number";
+        String sql = "SELECT rooms.id, rooms.room_number, rooms.floor_number, room_type_id, room_type.name AS room_type, rooms.price, room_status_id , room_status.name AS room_status FROM rooms LEFT JOIN room_type ON rooms.room_type_id = room_type.id JOIN room_status ON rooms.room_status_id = room_status.id  where floor_number = ? ORDER BY rooms.room_number";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, floorInt);
         return ps.executeQuery();

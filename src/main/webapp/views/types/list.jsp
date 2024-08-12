@@ -31,15 +31,17 @@
         </tr>
         </thead>
         <tbody>
+        <c:set var="index" value="1"/>
         <c:forEach var="type" items="${types}">
             <tr>
-                <td>${type.id}</td>
+                <td>${index}</td>
                 <td>${type.name}</td>
                 <td>
                     <a href="${pageContext.request.contextPath}/types/update?id=${type.id}" class="btn btn-warning btn-sm">Update</a>
                     <a href="${pageContext.request.contextPath}/types/delete?id=${type.id}" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
+            <c:set var="index" value="${index + 1}"/>
         </c:forEach>
         </tbody>
     </table>
